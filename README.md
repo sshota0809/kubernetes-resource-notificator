@@ -1,4 +1,4 @@
-# kubernetes-notificator
+# kubernetes-resouce-notificator
 
 ## How to Use
 
