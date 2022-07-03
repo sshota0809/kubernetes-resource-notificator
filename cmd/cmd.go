@@ -29,11 +29,11 @@ import (
 
 type controllerOptions struct {
 	clientConfig clientcmd.ClientConfig
-	configMap string
-	secret string
-	apiGroup string
-	apiVersion string
-	apiResource string
+	configMap    string
+	secret       string
+	apiGroup     string
+	apiVersion   string
+	apiResource  string
 }
 
 type command struct {
@@ -68,7 +68,7 @@ func (c *command) Execute() {
 }
 
 func NewCommand() *command {
-	cmd := command {
+	cmd := command{
 		cobra.Command{
 			Use: "controller",
 			Run: func(c *cobra.Command, args []string) {
@@ -96,7 +96,7 @@ func NewCommand() *command {
 					SecretName:    co.secret,
 					InitGetVars: func(cfg *api.Config, configMap *v1.ConfigMap, secret *v1.Secret) (api.GetVars, error) {
 						return func(obj map[string]interface{}, dest services.Destination) map[string]interface{} {
-							return map[string]interface{}{"pod": obj}
+							return map[string]interface{}{co.apiResource: obj}
 						}, nil
 					},
 				}, namespace, secrets, configMaps)
